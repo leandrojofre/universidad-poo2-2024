@@ -26,33 +26,41 @@ import java.util.ArrayList;
 
 public class Hotel {
 	
-	private int numeroDeHabitaciones;
 	private ArrayList<Habitacion> habitaciones;
 
 	public Hotel(int numeroDeHabitaciones) {
-		this.numeroDeHabitaciones = numeroDeHabitaciones;
 		this.setHabitaciones(numeroDeHabitaciones);
 	}
 	
 	private void setHabitaciones(int total) {
+		
 		this.habitaciones = new ArrayList<Habitacion>();
 		
 		for (int i = 0; i < total; i++)
 			this.habitaciones.add(new Habitacion());		
 	}
 	
+	void ocuparHabitacionCon(int mayores, int menores) {
+		
+		for (Habitacion habitacion : habitaciones)
+			if (habitacion.getOcupantes("total") == 0) {
+				habitacion.ocuparCon(mayores, menores);
+				return;
+			}
+	}
+	
 	public int getTotalDeOcupantes() {
+		
 		int ocupantes = 0;
 		
-		for (Habitacion habitacion : habitaciones) {
-			ocupantes += habitacion.getOcupantes("mayores");
-			ocupantes += habitacion.getOcupantes("menores");
-		}
+		for (Habitacion habitacion : habitaciones)
+			ocupantes += habitacion.getOcupantes("total");
 		
 		return ocupantes;
 	}
 	
 	public int contarHabitacionesCon(int mayores) {
+		
 		int habitacionesContadas = 0;
 		
 		for (Habitacion habitacion : habitaciones)

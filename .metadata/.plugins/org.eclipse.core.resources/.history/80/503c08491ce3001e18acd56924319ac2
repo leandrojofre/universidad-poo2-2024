@@ -1,9 +1,0 @@
-package Ejercicio1;
-
-public class VerificadorNumerico {
-
-	public VerificadorNumerico() {
-		// TODO Auto-generated constructor stub
-	}
-
-}
